@@ -1,5 +1,7 @@
 import mysql.connector
+import nextcord
 from mysql.connector.errors import Error
+from database import database_connect
 import json
 
 
@@ -11,6 +13,11 @@ class DatabaseCheck:
             self.user = config["mariadb"]["user"]
             self.password = config["mariadb"]["password"]
             self.database = config["mariadb"]["database"]
+
+            self.connection_database = database_connect.DatabaseConnect(
+                pool_name="check_command_status",
+                pool_size=5
+            )
 
     def check_for_connection(self):
         try:
@@ -32,5 +39,22 @@ class DatabaseCheck:
             if str(databases[0]).lower() == "nyro":
                 return True
 
+    async def check_command_status(self, ctx: nextcord.Interaction, command: str):
+        guild_id = ctx.guild.id
+
+        connection = self.connection_database.connection_pool.get_connection()
+        cursor = connection.cursor(prepared=True)
+
+        sql_command = f"SELECT {command} FROM commands WHERE ServerID=%s"
+        sql_data = [int(guild_id)]
+
+        result_data = cursor.execute(sql_command, sql_data)
+        cursor.fetchall()
+        connection.close()
+
+        if result_data[0][0] != 1:
+            await ctx.send("Command is not enabled on this Server.")
+            return True
+
     def create_database(self):
-        print("hi")
+        print("Muss noch gemacht werden, wenn Datenbank steht.")

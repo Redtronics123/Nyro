@@ -14,11 +14,12 @@ class DatabaseConnect:
         self.pool_name = pool_name
         self.pool_size = pool_size
 
-        self.connection_pool = pooling.MySQLConnection(
+        self.connection_pool = pooling.MySQLConnectionPool(
             pool_name=self.pool_name,
             pool_size=self.pool_size,
             host=self.host,
             user=self.user,
+            password=self.password,
             database=self.database,
             pool_reset_session=True
         )
