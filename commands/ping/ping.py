@@ -14,7 +14,7 @@ class Ping(commands.Cog):
         force_global=True
     )
     async def ping(self, ctx: nextcord.Interaction):
-        if await database_check.DatabaseCheck().check_command_status(ctx, "Ping"):
+        if await database_check.DatabaseCheck().check_command_status(ctx, "ping"):
             return
         embed_ping = embeds.TemplateEmbed(self.bot, ctx, ctx.user.color)
         embed_ping.add_field(name="Ping", value=f"The ping is by: **{round(self.bot.latency * 100)}**ms")

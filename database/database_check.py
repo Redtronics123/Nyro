@@ -45,11 +45,11 @@ class DatabaseCheck:
         connection = self.connection_database.connection_pool.get_connection()
         cursor = connection.cursor(prepared=True)
 
-        sql_command = f"SELECT {command} FROM commands WHERE ServerID=%s"
+        sql_command = f"SELECT {command} FROM commands WHERE serverID=%s"
         sql_data = [int(guild_id)]
 
-        result_data = cursor.execute(sql_command, sql_data)
-        cursor.fetchall()
+        cursor.execute(sql_command, sql_data)
+        result_data = cursor.fetchall()
         connection.close()
 
         if result_data[0][0] != 1:
