@@ -1,4 +1,3 @@
-import nextcord
 import nextcord.ext
 from nextcord.ext import commands, application_checks
 from database import database_connect
@@ -24,14 +23,14 @@ class ToggleCommand(commands.Cog):
         connection = self.connection_database.connection_pool.get_connection()
         cursor = connection.cursor(prepared=True)
 
-        sql_command = f"SELECT {command} FROM commands WHERE serverID=%s"
+        sql_command = f"SELECT {command.lower()} FROM commands WHERE serverID=%s"
         sql_data = [int(guild_id)]
 
         cursor.execute(sql_command, sql_data)
         result_data = cursor.fetchall()
 
         if int(result_data[0][0]) != 1:
-            sql_command = f"UPDATE commands SET {command}=true WHERE serverID=%s"
+            sql_command = f"UPDATE commands SET {command.lower()}=true WHERE serverID=%s"
             sql_data = [int(guild_id)]
 
             cursor.execute(sql_command, sql_data)
@@ -40,7 +39,7 @@ class ToggleCommand(commands.Cog):
             await ctx.send(f"The command {command} is now active.", ephemeral=True)
             return
 
-        sql_command = f"UPDATE commands SET {command}=false WHERE serverID=%s"
+        sql_command = f"UPDATE commands SET {command.lower()}=false WHERE serverID=%s"
         sql_data = [int(guild_id)]
 
         cursor.execute(sql_command, sql_data)

@@ -53,7 +53,7 @@ class DatabaseCheck:
         connection.close()
 
         if result_data[0][0] != 1:
-            await ctx.send("Command is not enabled on this Server.")
+            await ctx.send("Command is not enabled on this Server.", ephemeral=True)
             return True
 
     def create_database(self):
