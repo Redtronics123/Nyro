@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands, application_checks
-from database import database_connect
+from database import database_connect, database_check
 
 
 class StatusCommand(commands.Cog):

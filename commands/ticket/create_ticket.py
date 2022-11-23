@@ -1,6 +1,7 @@
 import nextcord
 import nextcord.ext
-from nextcord.ext import commands, application_checks
+from nextcord.ext import commands
+from database import database_check
 
 
 class TicketCreate(commands.Cog):
@@ -13,6 +14,9 @@ class TicketCreate(commands.Cog):
         force_global=True
     )
     async def ticket_create(self, ctx: nextcord.Interaction):
+        if await database_check.DatabaseCheck().check_command_status(ctx, "ticket"):
+            return
+
         category = nextcord.utils.get(ctx.guild.categories, name="ticket")
         if category is None:
             category = await ctx.guild.create_category("ticket")
