@@ -1,2 +1,4 @@
 nextcord
 mysql-connector-python
+deep-translator
+spacy
