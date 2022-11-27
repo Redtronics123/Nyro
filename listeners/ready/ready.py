@@ -1,5 +1,3 @@
-import nextcord
-import nextcord.ext
 from nextcord.ext import commands
 
 
