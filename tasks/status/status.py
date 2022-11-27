@@ -9,10 +9,6 @@ class Status(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-        with open("/home/nils/PycharmProjects/nyro/config.json", "r") as conf:
-            config = json.load(conf)
-            self.version = config["version"]
-
     @tasks.loop(seconds=30)
     async def status(self):
         await self.bot.change_presence(
@@ -26,7 +22,7 @@ class Status(commands.Cog):
         )
         await asyncio.sleep(10)
         await self.bot.change_presence(
-            activity=nextcord.Game(f"Version: {self.version}"),
+            activity=nextcord.Game("Natural language processing"),
             status=nextcord.Status.do_not_disturb
         )
 
