@@ -3,7 +3,7 @@ import nextcord.ext
 from nextcord.ext import commands
 import wikipedia
 from template import embeds
-from algorythmen import string_split
+from algorithm import string_split
 
 
 class Search(commands.Cog):
