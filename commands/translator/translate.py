@@ -1,4 +1,3 @@
-import nextcord
 import nextcord.ext
 from nextcord.ext import commands
 from deep_translator import GoogleTranslator
