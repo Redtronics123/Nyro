@@ -6,7 +6,7 @@ from template import embeds
 from algorithm import string_split
 
 
-class Search(commands.Cog):
+class WikiSearch(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
@@ -15,7 +15,7 @@ class Search(commands.Cog):
         description="Search in Wikipedia",
         force_global=True
     )
-    async def search(self, ctx: nextcord.Interaction, search: str):
+    async def wiki_search(self, ctx: nextcord.Interaction, search: str):
         await ctx.response.defer()
         try:
             wikipedia.set_lang("de")
@@ -38,4 +38,4 @@ class Search(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Search(bot))
+    bot.add_cog(WikiSearch(bot))
