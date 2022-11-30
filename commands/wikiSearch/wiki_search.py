@@ -23,6 +23,7 @@ class WikiSearch(commands.Cog):
             return await ctx.send("No content found", ephemeral=True)
 
         wiki_embed = embeds.TemplateEmbed(self.bot, ctx, nextcord.Color.dark_gold())
+        wiki_embed.description = "All found results may not be correct!"
 
         if result and len(result) > 1024:
             list_strings = string_split.StringSplit(result).string_splitting()
