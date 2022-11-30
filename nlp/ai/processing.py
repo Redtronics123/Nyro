@@ -20,5 +20,3 @@ class Processing:
         for i in range(len(self.results_label)):
             if self.results_label[i] == "PERSON" or self.results_label[i] == "ORG":
                 self.keywords.append(self.results_text[i])
-
-        return self.keywords

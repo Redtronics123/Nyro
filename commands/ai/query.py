@@ -15,7 +15,7 @@ class Query(commands.Cog):
     async def analysis(self, ctx: nextcord.Interaction, text: str):
         await ctx.response.defer()
         res = await processing.Processing(text=text).processing()
-        await search.Search(ctx, self.bot, language, res).search()
+        await search.Search(ctx, self.bot, res).search()
 
 
 def setup(bot):
