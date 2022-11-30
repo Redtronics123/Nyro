@@ -18,7 +18,6 @@ class WikiSearch(commands.Cog):
     async def wiki_search(self, ctx: nextcord.Interaction, search: str):
         await ctx.response.defer()
         try:
-            wikipedia.set_lang("de")
             result: str = wikipedia.summary(search)
         except wikipedia.WikipediaException:
             return await ctx.send("No content found", ephemeral=True)
