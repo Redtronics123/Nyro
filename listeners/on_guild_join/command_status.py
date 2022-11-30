@@ -1,4 +1,3 @@
-import nextcord
 import nextcord.ext
 from nextcord.ext import commands
 from database import database_connect

@@ -2,7 +2,6 @@ import nextcord
 import nextcord.ext
 from nextcord.ext import commands, tasks
 import asyncio
-import json
 
 
 class Status(commands.Cog):
