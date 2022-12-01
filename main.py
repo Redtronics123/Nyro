@@ -2,6 +2,8 @@ from nextcord.ext import commands
 from database import database_check
 import json
 import os
+import asyncio
+from commands.music import music_nods
 
 
 class Nyro(commands.Bot):

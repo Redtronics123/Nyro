@@ -11,7 +11,7 @@ class Status(commands.Cog):
     @tasks.loop(seconds=30)
     async def status(self):
         await self.bot.change_presence(
-            activity=nextcord.Game(f"Nyro supported {len(self.bot.guilds)} server"),
+            activity=nextcord.Game(f"Nyro support's {len(self.bot.guilds)} server"),
             status=nextcord.Status.do_not_disturb
         )
         await asyncio.sleep(10)
