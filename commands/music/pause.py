@@ -15,9 +15,11 @@ class MusicPause(commands.Cog):
     async def pause(self, ctx: nextcord.Interaction):
         node = wavelink.NodePool.get_node()
         player = node.get_player(ctx.guild)
+
         if not player.is_paused():
             await player.pause()
             return await ctx.send("Song is paused")
+
         return await ctx.send("Song is already paused")
 
 
