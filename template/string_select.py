@@ -22,5 +22,4 @@ class TemplateStringSelect(nextcord.ui.View):
             placeholder=self.placeholder,
         )
         self.select.callback = callback
-
         self.add_item(self.select)
