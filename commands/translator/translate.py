@@ -15,7 +15,6 @@ class Translate(commands.Cog):
     )
     async def translate(self, ctx: nextcord.Interaction, text: str):
         translator_view = string_select.TemplateStringSelect(
-            ctx,
             ["German", "English", "Danish", "Finnish", "French", "Indonesian", "Irish", "Italian", "Latin"],
             placeholder="Select a language"
         )

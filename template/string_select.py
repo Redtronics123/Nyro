@@ -3,9 +3,8 @@ import nextcord.ext
 
 
 class TemplateStringSelect(nextcord.ui.View):
-    def __init__(self, ctx: nextcord.Interaction, label_name: list, placeholder: str):
+    def __init__(self, label_name: list, placeholder: str):
         super().__init__()
-        self.ctx = ctx
         self.label_name = label_name
         self.options = []
         self.timeout = 60
