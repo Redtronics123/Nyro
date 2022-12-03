@@ -17,7 +17,10 @@ class TemplateStringSelect(nextcord.ui.View):
         async def callback(interaction):
             self.stop()
 
-        self.select = nextcord.ui.StringSelect(options=self.options, placeholder=self.placeholder)
+        self.select = nextcord.ui.StringSelect(
+            options=self.options,
+            placeholder=self.placeholder,
+        )
         self.select.callback = callback
 
         self.add_item(self.select)
