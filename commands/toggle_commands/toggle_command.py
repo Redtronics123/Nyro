@@ -1,6 +1,8 @@
 import nextcord.ext
 from nextcord.ext import commands, application_checks
 from database import database_connect
+import os
+from template import string_select
 
 
 class ToggleCommand(commands.Cog):
@@ -17,11 +19,24 @@ class ToggleCommand(commands.Cog):
         force_global=True
     )
     @application_checks.has_permissions(administrator=True)
-    async def toggle_command(self, ctx: nextcord.Interaction, command: str):
+    async def toggle_command(self, ctx: nextcord.Interaction):
         guild_id = ctx.guild.id
+        registed_commands = []
+        command = None
 
         connection = self.connection_database.connection_pool.get_connection()
         cursor = connection.cursor(prepared=True)
+
+        for directory in os.listdir("../nyro/commands"):
+            registed_commands.append(directory)
+
+        toggle_view = string_select.TemplateStringSelect(
+            label_name=registed_commands,
+            placeholder="Select a command"
+        )
+        await ctx.send(view=toggle_view)
+        await toggle_view.wait()
+        command = toggle_view.select.values[0]
 
         sql_command = f"SELECT {command.lower()} FROM commands WHERE serverID=%s"
         sql_data = [int(guild_id)]
