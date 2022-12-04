@@ -2,6 +2,7 @@ import nextcord
 import nextcord.ext
 from nextcord.ext import commands
 import wavelink
+from template import embeds
 
 
 class MusicPlay(commands.Cog):
@@ -30,7 +31,11 @@ class MusicPlay(commands.Cog):
 
         if not player.is_playing():
             await player.play(search)
-            embed_play = nextcord.Embed(title=f"Now playing {track}", colour=nextcord.Colour.dark_orange())
+
+            embed_play = embeds.TemplateEmbed(self.bot, ctx, nextcord.Color.fuchsia())
+            embed_play.add_field(name="Now playing", value=str(search), inline=False)
+            embed_play.add_field(name="Volume", value=str(player.volume))
+
             await ctx.send(embed=embed_play)
 
 
