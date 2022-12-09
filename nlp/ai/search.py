@@ -14,6 +14,8 @@ class Search:
 
     async def search(self):
         ai_embed = embeds.TemplateEmbed(self.bot, self.ctx, nextcord.Color.dark_gold())
+        if self.text is None:
+            return await self.ctx.send("No Content found.", ephemeral=True)
 
         for res in self.text:
             try:
@@ -25,9 +27,9 @@ class Search:
                 string_splitted = string_split.StringSplit(self.result).string_splitting()
 
                 for element in string_splitted:
-                    ai_embed.add_field(name=str(res) + "-->", value=str(element), inline=False)
+                    ai_embed.add_field(name=str(res) + " -->", value=str(element), inline=False)
 
             else:
-                ai_embed.add_field(name=str(res) + "-->", value=str(res), inline=False)
+                ai_embed.add_field(name=str(res) + " -->", value=str(res), inline=False)
 
         await self.ctx.send(embed=ai_embed, ephemeral=True)
