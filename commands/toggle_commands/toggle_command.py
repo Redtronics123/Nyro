@@ -28,13 +28,14 @@ class ToggleCommand(commands.Cog):
         cursor = connection.cursor(prepared=True)
 
         for directory in os.listdir("../nyro/commands"):
-            registed_commands.append(directory)
+            if directory != "toggle_commands":
+                registed_commands.append(directory)
 
         toggle_view = string_select.TemplateStringSelect(
             label_name=registed_commands,
             placeholder="Select a command"
         )
-        await ctx.send(view=toggle_view)
+        await ctx.send(view=toggle_view, ephemeral=True)
         await toggle_view.wait()
         command = toggle_view.select.values[0]
 
