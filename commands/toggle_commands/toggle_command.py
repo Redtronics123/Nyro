@@ -22,7 +22,6 @@ class ToggleCommand(commands.Cog):
     async def toggle_command(self, ctx: nextcord.Interaction):
         guild_id = ctx.guild.id
         registed_commands = []
-        command = None
 
         connection = self.connection_database.connection_pool.get_connection()
         cursor = connection.cursor(prepared=True)
